@@ -1,0 +1,51 @@
+{
+  "manifest_version": 3,
+  "name": "LBC -> Analyse IA",
+  "version": "5.3.0",
+  "description": "Empaquete une annonce ou une page de résultats Leboncoin et l'envoie vers ChatGPT, Gemini, DeepSeek ou Claude.",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "lbc-ia@katoda.fr",
+      "strict_min_version": "109.0"
+    }
+  },
+  "icons": {
+    "48": "icons/icon-48.png",
+    "96": "icons/icon-96.png"
+  },
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "https://www.leboncoin.fr/*",
+    "https://chatgpt.com/*",
+    "https://gemini.google.com/*",
+    "https://chat.deepseek.com/*",
+    "https://claude.ai/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.leboncoin.fr/*"
+      ],
+      "js": [
+        "common.js",
+        "lbc.js"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://chatgpt.com/*",
+        "https://gemini.google.com/*",
+        "https://chat.deepseek.com/*",
+        "https://claude.ai/*"
+      ],
+      "js": [
+        "common.js",
+        "ai.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}
